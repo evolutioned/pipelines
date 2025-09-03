@@ -176,8 +176,11 @@ async def load_modules_from_directory(directory):
     global PIPELINE_MODULES
     global PIPELINE_NAMES
 
+    # Files to exclude from pipeline loading (application files)
+    excluded_files = {"main.py", "config.py", "schemas.py", "__init__.py"}
+    
     for filename in os.listdir(directory):
-        if filename.endswith(".py"):
+        if filename.endswith(".py") and filename not in excluded_files:
             module_name = filename[:-3]  # Remove the .py extension
             module_path = os.path.join(directory, filename)
 

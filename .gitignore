@@ -4,6 +4,7 @@ __pycache__
 /litellm
 
 
+# Pipeline files (generated at runtime)
 pipelines/*
 !pipelines/.gitignore
 .DS_Store
