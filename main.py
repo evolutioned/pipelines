@@ -615,7 +615,9 @@ async def filter_inlet(pipeline_id: str, form_data: FilterForm):
 
     try:
         if hasattr(pipeline, "inlet"):
-            body = await pipeline.inlet(form_data.body, form_data.user)
+            # Extract metadata from body if not provided separately
+            metadata = form_data.metadata or form_data.body.get("metadata")
+            body = await pipeline.inlet(form_data.body, form_data.user, metadata)
             return body
         else:
             return form_data.body
@@ -647,7 +649,9 @@ async def filter_outlet(pipeline_id: str, form_data: FilterForm):
 
     try:
         if hasattr(pipeline, "outlet"):
-            body = await pipeline.outlet(form_data.body, form_data.user)
+            # Extract metadata from body if not provided separately
+            metadata = form_data.metadata or form_data.body.get("metadata")
+            body = await pipeline.outlet(form_data.body, form_data.user, metadata)
             return body
         else:
             return form_data.body

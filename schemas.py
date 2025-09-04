@@ -19,4 +19,5 @@ class OpenAIChatCompletionForm(BaseModel):
 class FilterForm(BaseModel):
     body: dict
     user: Optional[dict] = None
+    metadata: Optional[dict] = None
     model_config = ConfigDict(extra="allow")
